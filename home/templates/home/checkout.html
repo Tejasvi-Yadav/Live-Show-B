@@ -1,0 +1,147 @@
+<html>
+
+{% extends 'home/base.html' %}
+{% block body %}
+{% include 'home/messages.html ' %}
+<!-- {% load crispy_forms_tags %} -->
+    <head>
+        <style>
+            body{
+  background-image: url('https://pbs.twimg.com/media/B7qw-BVCYAA9LxQ.jpg');
+  background-repeat:no-repeat;
+  background-attatchment:fixed;
+  background-size:100% 100%;
+}
+
+    table , td, th{
+    border:3px solid black;
+    border-color:#BCC6CC;
+
+    }
+    label{
+    color:#FFE4E1;
+    font-weight:bold ;
+    font-size:15px;
+    }
+        </style>
+    </head>>
+<body>
+<div class ="container">
+
+    <br>
+    <h1><font color="white">Booking Details</font></h1>
+    <br><br>
+    <table class="table" style="width:100%">
+
+
+            <tr style="color:white; font-size:20px">
+                <th scope="col">Name</th>
+              <th scope="col">Phone</th>
+              <th scope="col">Event</th>
+              <th scope="col">Platinum seats</th>
+              <th scope="col">Gold seats</th>
+              <th scope="col">Silver Seats</th>
+              <th scope="col">Platinum total</th>
+              <th scope="col">Gold total</th>
+              <th scope="col">Silver total</th>
+              <th scope="col">Booking date</th>
+              <th scope="col">Total</th>
+            </tr>
+           <tr style="color:white; font-size:18px">
+               <td scope="col">{{visitor_name}}</td>
+               <td scope="col">{{phone_number}}</td>
+               <td scope="col">{{event_name}}</td>
+               <td scope="col">{{platinum_seats}}</td>
+               <td scope="col">{{gold_seats}}</td>
+               <td scope="col">{{silver_seats}}</td>
+               <td scope="col">{{total_platinum_price}}</td>
+               <td scope="col">{{total_gold_price}}</td>
+               <td scope="col">{{total_silver_price}}</td>
+               <td scope="col">{{booked_date}}</td>
+               <td scope="col">{{net_price}}</td>
+           </tr>
+
+
+    </table>
+</div>
+
+<div class="container">
+ <form action="/checkout1" method="post">
+         {% csrf_token %}
+
+  <br><br>
+
+
+    <div id="div_id_Name" class="control-group">
+        <label for="name" class="control-label requiredField" >
+                 Name<span class="asteriskField"></span>
+        </label>
+        <div class="controls">
+            <input type="text" name="name" class="form-control textinput textInput" maxlength="100" required id="name">
+        </div>
+    </div>
+    <div id="div_id_phone_number" class="control-group">
+        <label for="phone" class="control-label requiredField">
+                Phone number<span class="asteriskField"></span>
+        </label> <div class="controls">
+        <input type="text" name="phone" value="0" class="form-control textinput textInput" required id="phone" pattern="[0-9]{10}">
+    </div>
+    </div>
+    <div id="div_id_Email" class="control-group">
+        <label for="email" class="control-label requiredField" >
+                Email<span class="asteriskField"></span>
+        </label>
+        <div class="controls">
+            <input type="text" name="email" value="email" class="form-control textinput textInput" required id="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
+        </div>
+    </div>
+    <div id="div_id_Address" class="control-group">
+        <label for="address" class="control-label requiredField">
+                Address<span class="asteriskField"></span>
+        </label>
+        <div class="controls">
+            <input type="text" name="address" value="address" class="form-control textinput textInput" required id="address">
+        </div>
+    </div>
+    <div id="div_id_City" class="control-group">
+        <label for="city" class="control-label requiredField">
+                City<span class="asteriskField"></span>
+        </label>
+        <div class="controls">
+            <input type="text" name="city" value="city" class="form-control textinput textInput" required id="city">
+        </div>
+    </div>
+    <div id="div_id_State" class="control-group">
+    <label for="state" class="control-label requiredField">
+                State<span class="asteriskField"></span>
+    </label> <div class="controls">
+    <input type="text" name="state" value="state" class="form-control textinput textInput" required id="state">
+</div>
+</div>
+<div id="div_id_Zip_code" class="control-group">
+    <label for="zip_code" class="control-label requiredField">
+                Zip<span class="asteriskField"></span>
+    </label>
+    <div class="controls">
+    <input type="text" name="zip_code" value="0" class="form-control textinput textInput" required id="zip_code" pattern="[0-9]{4,6}">
+    </div>
+</div>
+<div id="div_id_net_price" class="control-group">
+        <label for="net_price" class="control-label requiredField" >
+                 Net Price<span class="asteriskField"></span>
+        </label>
+        <div class="controls">
+            <input type="text" name="net_price" value={{ net_price }} class="form-control textinput textInput" maxlength="100" required id="net_price">
+        </div>
+    </div>
+    <input type="hidden" name="amount" id="amount">
+    <button  class ="btn btn-primary " type="submit" value="submit" style="font-size:20px">Submit</button>
+    <br>
+
+
+</form>
+</div>
+{% endblock %}
+</body>
+
+</html>
